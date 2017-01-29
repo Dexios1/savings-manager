@@ -48,6 +48,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
     <link rel="stylesheet" href="styles.css">
+    <!-- morris.js css -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     <link rel="stylesheet" type="text/css" href="css/master.css">
     <style>
     #view-source {
@@ -158,18 +160,16 @@
                 </tr>
               </tbody>
             </table>
-              <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col">
+            <div class="mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col" id="paymentHistory" style="height: 250px;">
               
+            </div>
+              <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col">
+              <!-- take out the svg graphs and replace with Morris.js-->
               <svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
                 <use xlink:href="#chart" />
               </svg>
               </div>
-              <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col">
-              <svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
-                <use xlink:href="#chart" />
-              </svg>
               
-              </div>
             </div>
 
           
@@ -256,10 +256,10 @@
               <text transform="matrix(1 0 0 1 386.6667 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">6</text>
               <text transform="matrix(1 0 0 1 464.3333 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">7</text>
             </g>
-            <g id="Layer_5">
+            <!-- <g id="Layer_5">
               <polygon opacity="0.36" stroke-miterlimit="10" points="0,223.3 48,138.5 154.7,169 211,88.5
               294.5,80.5 380,165.2 437,75.5 469.5,223.3 	"/>
-            </g>
+            </g> -->
             <g id="Layer_4">
               <polygon stroke-miterlimit="10" points="469.3,222.7 1,222.7 48.7,166.7 155.7,188.3 212,132.7
               296.7,128 380.7,184.3 436.7,125 	"/>
@@ -268,5 +268,31 @@
         </defs>
       </svg>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!-- morris js plugin -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <script type="text/javascript">
+      new Morris.Line({
+      // ID of the element in which to draw the chart.
+      element: 'paymentHistory',
+      // Chart data records -- each entry in this array corresponds to a point on
+      // the chart.
+      data: [
+        { year: '2008', value: 20 },
+        { year: '2009', value: 10 },
+        { year: '2010', value: 5 },
+        { year: '2011', value: 5 },
+        { year: '2012', value: 20 }
+      ],
+      // The name of the data record attribute that contains x-values.
+      xkey: 'year',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['value'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ['Value']
+    });
+    </script>
   </body>
 </html>
